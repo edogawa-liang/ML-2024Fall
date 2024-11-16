@@ -1,6 +1,4 @@
-### Machine Learning Assignment I: Classifier Systems
-
----
+# Machine Learning Assignment I: Collaborative and Adaptive Classifier Systems
 
 ## Data Preparation
 

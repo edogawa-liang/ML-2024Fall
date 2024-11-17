@@ -53,7 +53,7 @@ def process_and_save_images(data, output_folder):
     processed_data = []
     for _, row in data.iterrows():
         img = Image.open(row["image_path"]).convert("RGB")
-        img_resized = img.resize(image_size, Image.ANTIALIAS)
+        img_resized = img.resize(image_size, Image.Resampling.LANCZOS)
         label = row["label"]
         label_dir = os.path.join(output_folder, label)
         os.makedirs(label_dir, exist_ok=True)

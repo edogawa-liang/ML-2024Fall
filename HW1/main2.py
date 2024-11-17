@@ -1,5 +1,6 @@
 import argparse
 import joblib
+import numpy as np
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from utils.load_data import DataLoader
@@ -65,7 +66,7 @@ def main(args):
     metrics = evaluate_performance(y_test, y_pred)
     print("Performance Metrics:")
     for metric, value in metrics.items():
-        print(f"{metric}: {value:.2f}")
+        print(f"{metric}: {value:.4f}")
 
     # Save the model
     model_type = 'svm' if skewness > args.skew_threshold else 'knn'
@@ -79,7 +80,7 @@ if __name__ == "__main__":
     parser.add_argument("--dataset_dir", type=str, required=True, help="Directory containing the dataset")
     parser.add_argument("--imbalance", action="store_true", help="Generate and use an imbalanced dataset")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
-    parser.add_argument("--skew_threshold", type=float, default=0.5, help="Threshold to determine if data is skewed")
+    parser.add_argument("--skew_threshold", type=float, default=0.1, help="Threshold to determine if data is skewed")
     parser.add_argument("--max_skewness", type=float, default=3.0, help="Maximum skewness value for mapping")
     parser.add_argument("--C_min", type=float, default=0.01, help="Minimum C value for SVM")
     parser.add_argument("--C_max", type=float, default=300, help="Maximum C value for SVM")

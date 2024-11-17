@@ -40,4 +40,4 @@ def calculate_skewness(y):
     # 計算頻率的偏態值
     skewness = skew(counts)
     print(f"Label Skewness: {skewness:.2f}")
-    return skewness
+    return np.abs(skewness)

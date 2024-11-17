@@ -8,7 +8,7 @@
 2. **Prepare the Dataset**  
    Run the preprocessing script:
    ```bash
-   python data_preparation.py
+   python preparation.py
    ```
    Dataset structure after preparation:
    - **Training Set**: 100 classes, 500 images per class  
@@ -50,7 +50,7 @@ This system dynamically selects the best classifier and parameters based on data
    ```bash
    python main2.py --dataset_dir miniImageNet \
                    --imbalance --seed 42 \
-                   --skew_threshold 0.7 \
+                   --skew_threshold 0.1 \
                    --C_min 0.01 --C_max 100 \
                    --k_min 5 --k_max 50
    ```

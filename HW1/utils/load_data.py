@@ -71,25 +71,26 @@ class DataLoader:
 
     def plot_class_distribution(self, y, title="Class Distribution", seed=None):
         """
-        Plot the class distribution as a bar chart.
+        Plot the class distribution as a sorted bar chart by class counts.
 
         Args:
             y (np.ndarray): Label array.
             title (str): Title of the plot.
             seed (int): Random seed used for creating the imbalance.
         """
+        # Count the occurrences of each class
         class_counts = Counter(y)
-        classes = list(class_counts.keys())
-        counts = list(class_counts.values())
+        classes, counts = zip(*sorted(class_counts.items(), key=lambda x: x[1], reverse=True))  # Sort by count descending
 
         plt.figure(figsize=(12, 6))
-        plt.bar(classes, counts, color="skyblue")
-        plt.xlabel("Class Labels")
+        plt.bar(range(len(classes)), counts, color="skyblue")
+        plt.xlabel("Class Labels (sorted by count)")
         plt.ylabel("Number of Samples")
         plt.title(title)
-        plt.xticks(classes, rotation=90)
+        plt.xticks(range(len(classes)), classes, rotation=90)
         plt.tight_layout()
 
+        # Save the plot with seed information if provided
         filename = f"class_distribution_seed_{seed}.png" if seed is not None else "class_distribution.png"
         plt.savefig(filename)
         print(f"Plot saved to {filename}.")
